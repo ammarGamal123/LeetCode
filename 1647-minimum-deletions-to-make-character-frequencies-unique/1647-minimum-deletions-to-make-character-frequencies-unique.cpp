@@ -1,21 +1,24 @@
 class Solution {
 public:
     int minDeletions(string s) {
-        unordered_map <int,int> mp;
-        for (auto &i : s)
-            mp[i] ++;
-        
-        unordered_set <int> used;
-        int ans {};
-        
-        for (auto &it : mp){
-            int freq = it.second;
-            while (freq > 0 && used.find(freq) != used.end()){
-                -- freq;
-                ans ++;
-            }
-            used.insert (freq);
+    int ans {};
+    vector <int> freq(26 , 0);
+
+    for (auto i : s)
+        freq[i - 'a'] ++;
+
+    sort (freq.begin() , freq.end());
+
+    for (int i = 24;i >= 0; i--){
+        if (freq[i] == 0)
+            break;
+
+        if (freq[i] >= freq[i + 1]){
+            int prev = freq[i];
+            freq[i] = max (0 , freq[i + 1] - 1);
+            ans += prev - freq[i];
         }
-        return ans;
+    }
+    return ans;
     }
 };
