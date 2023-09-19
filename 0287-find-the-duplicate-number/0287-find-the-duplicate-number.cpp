@@ -2,12 +2,12 @@ class Solution {
 public:
 
     int findDuplicate(vector<int>& a) {
-        int n = a.size();
-        vector <int> freq(n + 2 , 0);
-        
-        for (auto i : a){
-            if (freq[i] >= 1) return i;
-            freq[i] ++;
+        for (int i = 0;i < a.size(); i ++){
+            int idx = abs (a[i]);
+            
+            if (a[idx] < 0) return idx;
+            else
+                a[idx] = - a[idx];
         }
         return 0;
     }
