@@ -1,21 +1,20 @@
 class MyHashMap {
 public:
-    map <int,int> mp;
+    int freq[1000001]; //  1000001;
     MyHashMap() {
-        
+        fill (freq , freq + 1000001 , -1);
     }
     
     void put(int key, int value) {
-        mp[key] = value;
+        freq[key] = value;
     }
     
     int get(int key) {
-        if (mp.count(key)) return mp[key];
-        else return -1;
+        return freq[key];
     }
     
     void remove(int key) {
-        mp.erase (key);
+        freq[key] = -1;
     }
 };
 
