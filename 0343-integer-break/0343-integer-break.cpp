@@ -1,15 +1,16 @@
 class Solution {
 public:
     int integerBreak(int n) {
-       if (n <= 3) return n - 1;
-        
-        int prod = 1;
-        
-        while (n > 4)
-            prod *= 3 , n -= 3;
-        
-        prod *= n;
-        
-        return prod;
+        long long  ans = 0;
+        for(int i = 2; i <= n; ++ i){
+            long long cur_ans = 1;
+            long long mod = n % i;
+            for(int j = 1; j <= i; ++ j){
+                cur_ans *= ( n / i + (mod > 0));
+                -- mod;
+            }
+            ans = max(ans , cur_ans);
+        } 
+        return ans;
     }
 };
