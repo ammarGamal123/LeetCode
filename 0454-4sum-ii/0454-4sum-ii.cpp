@@ -13,7 +13,7 @@ public:
         
         for (int i : a3){
             for (int j : a4){
-                ans += mp.count(- (i + j)) ? mp[- (i + j)] : 0;
+                ans += mp[- (i + j)];
             }
         }
         
