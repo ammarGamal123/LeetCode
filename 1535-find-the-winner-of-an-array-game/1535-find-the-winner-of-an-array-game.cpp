@@ -1,30 +1,43 @@
 class Solution {
 public:
-    int getWinner(vector<int>& arr, int k) {
-        
-         if (k == 1) {
-            return std::max(arr[0], arr[1]);
-        }
-        if (k >= arr.size()) {
-            return *std::max_element(arr.begin(), arr.end());
+    int getWinner(vector<int>& a, int k) {
+       int n = a.size();
+        if (k >= n)
+            return *max_element(a.begin() , a.end());
+
+
+        int fst = max(a[0] , a[1]) , scd = min (a[0] , a[1]);
+
+        reverse(a.begin() , a.end());
+        a.pop_back();
+        a.pop_back();
+        reverse (a.begin() , a.end());
+
+        deque <int> dq(n - 2) ;
+
+        for (int i = 0;i < dq.size(); i++){
+            dq[i] = a[i];
         }
 
-        int current_winner = arr[0];
-        int consecutive_wins = 0;
 
-        for (int i = 1; i < arr.size(); ++i) {
-            if (current_winner > arr[i]) {
-                consecutive_wins++;
-            } else {
-                current_winner = arr[i];
-                consecutive_wins = 1;
+
+        int cnt = 0;
+        while (k > cnt && dq.size()){
+            if (fst > scd){
+                ++ cnt;
+                scd = dq.front();
+                dq.pop_front();
+            }
+            else {
+                cnt = 0;
+                int temp = fst;
+                fst = scd;
+                scd = temp;
             }
 
-            if (consecutive_wins == k) {
-                return current_winner;
-            }
         }
-
-        return current_winner;
+        if (cnt >= k)
+            return fst;
+        else return *max_element(a.begin() , a.end());
     }
 };
