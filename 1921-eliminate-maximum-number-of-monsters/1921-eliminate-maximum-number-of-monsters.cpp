@@ -1,21 +1,22 @@
 class Solution {
 public:
-    int eliminateMaximum(std::vector<int>& dist, std::vector<int>& speed) {
-        int n = dist.size();
-        std::vector<double> time_to_city(n);
-        
-        for (int i = 0; i < n; ++i) {
-            time_to_city[i] = static_cast<double>(dist[i]) / speed[i];
+    int eliminateMaximum(vector<int>& dist, vector<int>& speed) {
+        vector<float> arrival;
+        for (int i = 0; i < dist.size(); i++) {
+            arrival.push_back((float) dist[i] / speed[i]);
         }
         
-        std::sort(time_to_city.begin(), time_to_city.end());
+        sort(arrival.begin(), arrival.end());
+        int ans = 0;
         
-        for (int i = 0; i < n; ++i) {
-            if (time_to_city[i] <= i) {
-                return i;
+        for (int i = 0; i < arrival.size(); i++) {
+            if (arrival[i] <= i) {
+                break;
             }
+            
+            ans++;
         }
         
-        return n;
+        return ans;
     }
 };
