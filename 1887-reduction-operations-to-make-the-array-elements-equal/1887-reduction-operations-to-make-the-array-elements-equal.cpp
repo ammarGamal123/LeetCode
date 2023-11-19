@@ -1,9 +1,10 @@
 class Solution {
 public:
     int reductionOperations(vector<int>& a) {
-        vector <int> freq (500000);
         
         int Min = *min_element(a.begin() , a.end());
+        int Max = *max_element (a.begin() , a.end());
+        vector <int> freq (Max + 5);
         for (int i : a){
                 
                 freq[i] ++;
