@@ -1,7 +1,7 @@
 class Solution {
 public:
     int countNicePairs(vector<int>& a) {
-        map <int,long long> mp;
+        unordered_map <int,long long> mp;
         vector <int> a2(a.size());
         for (int i = 0;i < a.size(); i++){
             string s = to_string(a[i]);
