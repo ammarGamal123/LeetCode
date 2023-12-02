@@ -1,28 +1,31 @@
 class Solution {
 public:
-    int countCharacters(vector<string>& s, string chars) {
-        vector <int> freq (26 , 0);        
-        for (auto &i : chars){
-            freq[i - 'a'] ++;
+    int countCharacters(vector<string>& words, string chars) {
+        vector<int> counts(26, 0);
+        for (char c : chars) {
+            counts[c - 'a']++;
         }
         
         int ans = 0;
-        for (int i = 0; i < s.size(); i ++ ){
-            bool flag = true;
-            vector <int> freq2(26 , 0);
-            for (int j = 0;j < s[i].size(); j++){
-                freq2[s[i][j] - 'a'] ++;
+        for (string word : words) {
+            vector<int> wordCount(26, 0);
+            for (char c : word) {
+                wordCount[c - 'a']++;
             }
-            for (int j = 0; j < s[i].size(); j++){
-                if (freq[s[i][j] - 'a'] > 0){
-                    if (freq[s[i][j] - 'a'] < freq2[s[i][j] - 'a']){
-                        flag = false;
-                    }
+            
+            bool good = true;
+            for (int i = 0; i < 26; i++) {
+                if (counts[i] < wordCount[i]) {
+                    good = false;
+                    break;
                 }
-                else flag = false;
             }
-            if (flag) ans += s[i].size();
+            
+            if (good) {
+                ans += word.size();
+            }
         }
+        
         return ans;
     }
 };
