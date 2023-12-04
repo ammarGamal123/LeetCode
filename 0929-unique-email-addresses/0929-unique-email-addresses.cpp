@@ -2,7 +2,7 @@ class Solution {
 public:
     int numUniqueEmails(vector<string>& s) {
         int ans{};
-    map<string, set<string>> store;
+    map<string, unordered_set<string>> store;
     
     string after = "", before = "";
     bool at = false, plus = false;
