@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/count-of-matches-in-tournament/">1688. Count of Matches in Tournament</a></h2><h3>Easy</h3><hr><div><p>You are given an integer <code>n</code>, the number of teams in a tournament that has strange rules:</p>
+<h2><a href="https://leetcode.com/problems/count-of-matches-in-tournament/solution/">1688. Count of Matches in Tournament</a></h2><h3>Easy</h3><hr><div><p>You are given an integer <code>n</code>, the number of teams in a tournament that has strange rules:</p>
 
 <ul>
 	<li>If the current number of teams is <strong>even</strong>, each team gets paired with another team. A total of <code>n / 2</code> matches are played, and <code>n / 2</code> teams advance to the next round.</li>
