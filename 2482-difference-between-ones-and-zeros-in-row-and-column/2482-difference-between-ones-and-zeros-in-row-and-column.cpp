@@ -4,13 +4,11 @@ public:
 
     vector <vector<int>> diff(n , vector<int>(m));
     vector <int> oneRow(n) , oneColumn(m);
-    vector <vector<int>> rev(m , vector <int> (n));
 
     for (int i = 0;i < m;i ++){
         int sumOne = 0;
         for (int j = 0; j < n;j ++){
-            rev[i][j] = grid[j][i];
-            sumOne += rev[i][j];
+            sumOne += grid[j][i];
         }
 
         oneColumn[i] = sumOne;
