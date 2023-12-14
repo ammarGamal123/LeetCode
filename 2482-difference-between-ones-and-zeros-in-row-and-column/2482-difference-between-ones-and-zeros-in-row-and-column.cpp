@@ -4,7 +4,6 @@ public:
 
     vector <vector<int>> diff(n , vector<int>(m));
     vector <int> oneRow(n) , oneColumn(m);
-    vector <int> zeroColumn(m);
     vector <vector<int>> rev(m , vector <int> (n));
 
     for (int i = 0;i < m;i ++){
@@ -14,8 +13,7 @@ public:
             sumOne += rev[i][j];
         }
 
-        oneColumn[i] = count(rev[i].begin() , rev[i].end() , 1);
-        zeroColumn[i] = m - sumOne;
+        oneColumn[i] = sumOne;
 
     }
 
@@ -24,8 +22,9 @@ public:
         int zeroRow = n - oneRow[i];
 
         for (int j = 0; j < m; j++){
+            int zeroColumn = m - oneColumn[j];
             diff[i][j] = oneRow[i] + oneColumn[j] -
-                         zeroRow - zeroColumn[j];
+                         zeroRow - zeroColumn;
         }
     }
     return diff;
