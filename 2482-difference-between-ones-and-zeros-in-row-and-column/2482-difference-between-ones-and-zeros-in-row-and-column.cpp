@@ -5,10 +5,6 @@ public:
     vector <vector<int>> diff(n , vector<int>(m));
     vector <int> oneRow(n) , oneColumn(m);
     vector <int> zeroRow(n) , zeroColumn(m);
-    for (int i = 0;i < n; i++){
-        oneRow[i] = count(grid[i].begin() , grid[i].end() , 1);
-        zeroRow[i] = n - oneRow[i];
-    }
 
     vector <vector<int>> rev(m , vector <int> (n));
 
@@ -25,6 +21,9 @@ public:
     }
 
     for (int i = 0;i < n; i++){
+        oneRow[i] = count(grid[i].begin() , grid[i].end() , 1);
+        zeroRow[i] = n - oneRow[i];
+
         for (int j = 0; j < m; j++){
             diff[i][j] = oneRow[i] + oneColumn[j] -
                          zeroRow[i] - zeroColumn[j];
