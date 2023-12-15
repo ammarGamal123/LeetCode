@@ -1,22 +1,20 @@
 class Solution {
 public:
     string destCity(vector<vector<string>>& paths) {
-        unordered_map <string , int> mp;
-        unordered_map <string , int> mpFirst;
-        
+        unordered_set <string> outgoing;
+            
         for (int i = 0;i < paths.size(); i++){
-            mp[paths[i][0]] ++;
-            mpFirst[paths[i][0]] ++;
-            mp[paths[i][1]] ++;
+             outgoing.insert(paths[i][0]);
         }
         
-        for (pair<string,int> i : mp){
-            if (i.second == 1 && !mpFirst.count(i.first)) 
-                return i.first;
+            
+        for (int i = 0; i < paths.size(); i++){
+            string candidate = paths[i][1];
+            
+            if (outgoing.find(candidate) == outgoing.end())
+                return candidate;
         }
         
-        
-        return  "";
-        
+        return "";
     }
 };
