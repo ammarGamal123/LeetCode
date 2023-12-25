@@ -21,8 +21,13 @@ public:
     
        int ans = solve (s , i + 1);
     
-        if (i + 1 < s.size() && (s[i] == '1' || (s[i] == '2' && s[i + 1] <= '6'))){
-            ans += solve (s , i + 2);
+        if (s[i] == '1'){
+            if (i + 1 < s.size())
+                ans += solve (s , i + 2);
+        }
+        else if (s[i] == '2'){
+            if (i + 1 < s.size() && s[i + 1] <= '6')
+                ans += solve (s , i + 2);
         }
         
         return dp[i] = ans;
