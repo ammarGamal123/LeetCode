@@ -9,8 +9,3 @@ I enjoy solving coding problems and enhancing my problem-solving skills. Below, 
 - **LeetCode Handle:** [Ammar_Hammad](https://leetcode.com/Ammar_Hammad/)
 
 Feel free to explore the solutions and provide feedback!
-
-
-## LeetCode Stats
-
-![LeetCode Stats](https://leetcode-badge.com/?name=Ammar_Hammad&stats=1&style=flat&logo=leetcode)
