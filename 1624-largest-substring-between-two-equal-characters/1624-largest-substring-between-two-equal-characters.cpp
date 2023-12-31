@@ -2,12 +2,10 @@ class Solution {
 public:
     int maxLengthBetweenEqualCharacters(string s) {
         int ans {-1};
-        vector <int> freq(26);
         vector <int> minLeft(26) , maxRight(26);
         
         for (int i = 0;i < s.size(); i++){
-            if (!freq[s[i] - 'a']){
-                freq[s[i] - 'a'] ++;
+            if (!minLeft[s[i] - 'a']){
                 minLeft[s[i] - 'a'] = i + 1;
             }
             else {
