@@ -2,25 +2,22 @@ class Solution {
 public:
     int maxLengthBetweenEqualCharacters(string s) {
         int ans {-1};
-        
-        map <char,pair <int , int>> mp;
+        vector <int> freq(26);
+        vector <int> minLeft(26) , maxRight(26);
         
         for (int i = 0;i < s.size(); i++){
-            pair <int,int> cur = mp[s[i]];
-            if (mp[s[i]].first != 0 && !mp[s[i]].second){
-                mp[s[i]] = {cur.first , i + 1};
+            if (!freq[s[i] - 'a']){
+                freq[s[i] - 'a'] ++;
+                minLeft[s[i] - 'a'] = i + 1;
             }
-            else if (!mp[s[i]].first) {
-                mp[s[i]] = {i + 1 , 0};
-            }
-            else if (mp[s[i]].first && mp[s[i]].second){
-                mp[s[i]] = {cur.first , i + 1};
+            else {
+                maxRight[s[i] - 'a'] = i + 1;
             }
         }
         
-        for (auto i : mp){
-            if (i.second.first && i.second.second){
-                ans = max (ans , i.second.second - i.second.first - 1);
+        for (int i = 0; i < minLeft.size(); i++){
+            if (maxRight[i] >= 1){
+                ans = max (ans , maxRight[i] - minLeft[i] - 1);
             }
         }
         
