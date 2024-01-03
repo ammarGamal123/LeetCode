@@ -1,25 +1,20 @@
 class Solution {
 public:
     vector<string> findRepeatedDnaSequences(string s) {
-    set <string> ans;
+    vector <string> ans;
         
-    if (s.size() < 10) return vector <string> ();
-    map <string,int> mp;
-    string cur = "";
+    if (s.size() <= 10) return vector <string> ();
+    unordered_map <string,int> mp;
+    
     for (int i = 0;i < s.size() - 9; i++){
-       // cout << s.substr(i , i + 10) << endl;
+        string cur = "";
         cur = s.substr(i , 10);
-        if (mp.count(cur)){
-            ans.insert(cur);
-            
-        }
-        else mp[cur] ++;
-
-    }
-     vector <string> res;
-        for (string s : ans)
-            res.emplace_back(s);
+        mp[cur] ++;
         
-    return res;
+        if (mp[cur] == 2)
+            ans.emplace_back(cur);
+    }
+       
+    return ans;
     }
 };
