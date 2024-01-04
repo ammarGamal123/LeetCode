@@ -11,18 +11,18 @@
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        vector <int> values;
-        
-        for (int i = 0; i < lists.size(); i++){
-            ListNode * current = lists[i];
-            while (current != nullptr){
-                values.emplace_back(current->val);
-                current = current->next;
-            }
+    vector <int> values;
+
+    for (int i = 0; i < lists.size(); i++){
+        ListNode * current = lists[i];
+        while (current != nullptr){
+            values.emplace_back(current->val);
+            current = current->next;
         }
-        sort (values.begin() , values.end());
-        
-        ListNode* ans = nullptr;
+    }
+    sort (values.begin() , values.end());
+
+    ListNode* ans = nullptr;
     ListNode* tail = nullptr;
 
     for (int value : values) {
