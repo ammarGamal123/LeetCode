@@ -2,24 +2,27 @@ class Solution {
 public:
     int minOperations(vector<int>& nums) {
      
-        unordered_map <int,int> mp;
+        vector <int> freq (1000006);
+        
         
         for (int i : nums)
-            mp[i] ++;
+            freq[i] ++;
         
         int ans {};
         
-        for (auto i : mp){
-            if (i.second == 1){
+        for (int i = 0; i < freq.size(); i++){
+            if (freq[i] >= 1){
+            if (freq[i] == 1){
                 return -1;
             }
             else {
-                if (i.second % 3 == 0){
-                    ans += i.second / 3;
+                if (freq[i] % 3 == 0){
+                    ans += freq[i] / 3;
                 }
                 else {
-                    ans += (i.second / 3) + 1;
+                    ans += (freq[i] / 3) + 1;
                 }
+            }
             }
         }
         
