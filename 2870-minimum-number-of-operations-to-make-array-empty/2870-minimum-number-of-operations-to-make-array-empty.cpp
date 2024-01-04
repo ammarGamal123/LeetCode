@@ -17,9 +17,6 @@ public:
                 if (i.second % 3 == 0){
                     ans += i.second / 3;
                 }
-                else if (i.second == 2) {
-                    ans ++;
-                }
                 else {
                     ans += (i.second / 3) + 1;
                 }
