@@ -1,33 +1,25 @@
 class Solution {
 public:
-    bool check (string &s){
-        stack <char> st;
-        
-        for (int i = 0;i < s.size(); i++){
-            if (s[i] == '(') st.push(s[i]);
-            else if (st.empty() && s[i] == ')') return false;
-            else if (s[i] == ')')
-                st.pop();
+    string str = "";
+    void recursion(vector<string>& res, int open, int close) {
+        if(open == 0 && close == 0) {
+            res.push_back(str);
+            return;
         }
-        
-        return st.empty();
-    }
-    void recursion(int n , string cur , vector <string> &ans){
-        if (n * 2 == cur.size()){
-            if (check(cur)){
-                ans.emplace_back(cur);     
-            }
-            return; 
+        if(open > 0) {
+            str += "(";
+            recursion(res, open-1, close);
+            str = str.substr(0, str.size()-1);
         }
-        
-        recursion(n , cur + '(' , ans);
-        
-        recursion(n , cur + ')' , ans);
-        
+        if(close > open) {
+            str += ")";
+            recursion(res, open, close-1);
+            str = str.substr(0, str.size()-1);
+        }
     }
     vector<string> generateParenthesis(int n) {
-        vector<string> ans;
-        recursion(n , "" , ans);
+        vector <string> ans;
+        recursion(ans , n , n);
         
         return ans;
     }
