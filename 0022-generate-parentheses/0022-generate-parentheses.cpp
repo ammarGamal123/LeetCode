@@ -19,7 +19,9 @@ public:
             }
             return; 
         }
+        
         recursion(n , cur + '(' , ans);
+        
         recursion(n , cur + ')' , ans);
         
     }
