@@ -11,29 +11,26 @@
  */
 class Solution {
 public:
-    void traceBST (TreeNode* root , unordered_map <int,bool> &mp){
+    void traceBST (TreeNode* root , vector <bool>&freq){
         if (root == NULL) return;
         
-        mp[root->val] = true;
-        traceBST(root->left , mp);
+        freq[root->val] = true;
+        traceBST(root->left , freq);
         
-        mp[root->val] = true;
-        traceBST(root->right , mp);
+        freq[root->val] = true;
+        traceBST(root->right , freq);
         
        
     }
     int rangeSumBST(TreeNode* root, int low, int high) {
-        unordered_map <int,bool> mp;
+        vector <bool> freq(100006,false);
         
-        traceBST(root , mp);
+        traceBST(root , freq);
         
         int ans {};
-        for (auto i : mp){
-            
-            if (i.first >= low && i.first <= high){
-              // cout << i.first << " " << i.second << endl;
-                ans += (long long)(i.first);
-            }
+        for (int i = 0; i < freq.size(); i++){
+            if (i >= low && i <= high && freq[i])
+                ans += i;
         }
         
         return ans;
