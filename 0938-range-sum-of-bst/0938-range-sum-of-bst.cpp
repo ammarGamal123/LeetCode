@@ -32,7 +32,7 @@ public:
             
             if (i.first >= low && i.first <= high){
               // cout << i.first << " " << i.second << endl;
-                ans += (long long)(i.first * (i.second - 1));
+                ans += (long long)(i.first);
             }
         }
         
