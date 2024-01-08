@@ -11,28 +11,17 @@
  */
 class Solution {
 public:
-    void traceBST (TreeNode* root , vector <bool>&freq){
-        if (root == NULL) return;
-        
-        freq[root->val] = true;
-        traceBST(root->left , freq);
-        
-        freq[root->val] = true;
-        traceBST(root->right , freq);
-        
-       
-    }
     int rangeSumBST(TreeNode* root, int low, int high) {
-        vector <bool> freq(100006,false);
+        if (root == NULL) return 0;
         
-        traceBST(root , freq);
+        int ans = (root->val >= low && root->val <= high ? root->val : 0); 
         
-        int ans {};
-        for (int i = 0; i < freq.size(); i++){
-            if (i >= low && i <= high && freq[i])
-                ans += i;
-        }
+        int left = rangeSumBST(root->left,low,high);
         
-        return ans;
+        int right = rangeSumBST(root->right,low,high);
+        
+        return ans + left + right;
+        
+            
     }
 };
