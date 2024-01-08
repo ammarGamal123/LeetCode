@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void traceBST (TreeNode* root , map <int,int> &mp){
+    void traceBST (TreeNode* root , unordered_map <int,int> &mp){
         if (root == NULL) return;
         
         mp[root->val] ++;
@@ -23,7 +23,7 @@ public:
        
     }
     int rangeSumBST(TreeNode* root, int low, int high) {
-        map <int,int> mp;
+        unordered_map <int,int> mp;
         
         traceBST(root , mp);
         
