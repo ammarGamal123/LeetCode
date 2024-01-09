@@ -11,13 +11,13 @@
  */
 class Solution {
 public:
-    void leafSeq1(TreeNode* root , stack <int> &st1){
+    void leafSeq1(TreeNode* root , vector <int> &st1){
         if (root == NULL){
             return ;
         }
         
         if (root->left == NULL && root->right == NULL){
-            st1.push(root->val);
+            st1.emplace_back(root->val);
         }
         
         leafSeq1(root->left , st1);
@@ -25,13 +25,13 @@ public:
         leafSeq1(root->right , st1);
     }
     
-     void leafSeq2(TreeNode* root , stack <int> &st2){
+     void leafSeq2(TreeNode* root , vector <int> &st2){
         if (root == NULL){
             return ;
         }
         
         if (root->left == NULL && root->right == NULL){
-            st2.push(root->val);
+            st2.emplace_back(root->val);
         }
         
         leafSeq2(root->left , st2);
@@ -40,7 +40,7 @@ public:
         leafSeq2(root->right , st2);
     }
     bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-       stack <int> st1 , st2;
+       vector<int> st1 , st2;
         
         leafSeq1(root1 , st1);
         leafSeq2(root2 , st2);
