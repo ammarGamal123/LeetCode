@@ -1,6 +1,6 @@
 class Solution {
     public:
-    vector <vector<int>> need;
+    vector <pair<int,int>> need;
 
     int maxAncestorDiff(TreeNode *root) {
         
@@ -8,10 +8,8 @@ class Solution {
         int maxDiff = 0;
         
         for (int i = 0;i < need.size(); i++){
-            int Min = *min_element(need[i].begin() , need[i].end());
-            int Max = *max_element(need[i].begin() , need[i].end());
             
-            maxDiff = max(maxDiff , Max - Min);
+            maxDiff = max(maxDiff , need[i].first - need[i].second);
         }
         
         
@@ -25,7 +23,10 @@ class Solution {
         path.emplace_back(root->val);
         
         if (root->left == NULL && root->right == NULL){
-            need.push_back(path);
+            int Min = *min_element(path.begin() , path.end());
+            int Max = *max_element(path.begin() , path.end());
+            
+            need.push_back({Max , Min});
         }
         
         
