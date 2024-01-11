@@ -1,38 +1,32 @@
 class Solution {
     public:
     vector <pair<int,int>> need;
-
+    int ans = 0;
     int maxAncestorDiff(TreeNode *root) {
         
-        recursion(root , {});
-        int maxDiff = 0;
         
-        for (int i = 0;i < need.size(); i++){
-            
-            maxDiff = max(maxDiff , need[i].first - need[i].second);
-        }
+        recursion(root , 0 , INT_MAX);
         
         
-		return maxDiff;
+        return ans;
 	}
     
-    void recursion(TreeNode * root ,vector<int> path){
+    void recursion(TreeNode * root , int Max , int Min){
         if (root == NULL)
             return ;
         
-        path.emplace_back(root->val);
+        Max = max (Max , root->val);
+        Min = min(Min , root->val);
         
         if (root->left == NULL && root->right == NULL){
-            int Min = *min_element(path.begin() , path.end());
-            int Max = *max_element(path.begin() , path.end());
             
-            need.push_back({Max , Min});
+            ans = max (ans , Max - Min);
         }
         
         
-        recursion(root->left , path);
+        recursion(root->left , Max , Min);
            
-        recursion(root->right , path);
+        recursion(root->right, Max , Min);
         
     }
 
