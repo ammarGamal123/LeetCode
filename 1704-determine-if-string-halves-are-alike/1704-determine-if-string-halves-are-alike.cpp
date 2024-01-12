@@ -7,12 +7,15 @@ public:
        
         int cnt = 0;
         
-        for (int i = 0;i < s.size() / 2; i++){
-            cnt += vowels(s[i]);
+        for (int i = 0;i < s.size(); i++){
+            if (i < s.size() / 2)
+                cnt += vowels(s[i]);
+            else {
+                cnt -= vowels(s[i]);
+            }
+            
         }
-        for (int i = s.size() / 2; i < s.size(); i++){
-            cnt -= vowels(s[i]);
-        }
+        
         
         return (!cnt);
     }
