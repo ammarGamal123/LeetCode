@@ -1,25 +1,25 @@
 class Solution {
 public:
     int minSteps(string s, string t) {
-        unordered_map <char,int> mpS , mpT;
+        vector <int> mpS(26) , mpT(26);
         
         for (auto &i : s)
-            mpS[i] ++;
+            mpS[i - 'a'] ++;
         
         for (auto &i : t)
-            mpT[i] ++;
+            mpT[i - 'a'] ++;
         
         int ans {} , cnt {};
-        for (int i = 0;i < s.size(); i++){
-            if (mpT.count(s[i]))
+        for (int i = 0;i < mpS.size(); i++){
+            if (mpT[i])
             {
-                if (mpS[s[i]] >= mpT[s[i]]){
-                    ans += mpT[s[i]];
-                    mpT.erase(s[i]);
+                if (mpS[i] >= mpT[i]){
+                    ans += mpT[i];
+                    mpT[i] = 0;
                 }
                 else {
-                    ans += mpS[s[i]];
-                    mpT.erase(s[i]);
+                    ans += mpS[i];
+                    mpT[i] = 0;
                 }
                 
             }
