@@ -1,20 +1,12 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& a) {
-        int j = 0;
-        for (int i = 1;i < a.size(); i++){
-            if (a[i] != a[j]){
-                j ++;
-                
-                a[j] = a[i];
-            }
+    for (auto it = a.begin(); it < a.end() - 1; it++) {
+        if (*it == *(it + 1)) {
+            a.erase(it);
+            it--;
         }
-        
-        for (int i = 0;i < a.size(); i++){
-            cout << a[i] << " ";
-        }
-        cout << endl;
-        
-        return j + 1;
+    }
+    return a.size();
     }
 };
