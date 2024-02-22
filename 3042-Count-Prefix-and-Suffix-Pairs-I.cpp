@@ -1,10 +1,10 @@
 class Solution {
 public:
     bool check(string &a, string &b)    {
-        int n = a.length(), m = b.length();
-        if(m < n)   return false;
-        string x = b.substr(0, n);
-        string y = b.substr(m-n);
+       
+        if(b.size() < a.size())   return false;
+        string x = b.substr(0, a.size());
+        string y = b.substr(b.size()-a.size());
         // cout << a << " " << b << " " << x << " " << y << endl;
         return a==x && a ==y;
     }
