@@ -4,14 +4,17 @@ public:
         int n = a.size(), l = 0, r = n - 1, same = 0;
 
     while (l < r && a[l] == a[r]) {
-        char target = a[l];
-        while (l <= r && a[l] == target) {
-            ++l;
-            ++same;
+        
+        int needed = a[l];
+        
+        while (l <= r && a[l] == needed){
+            ++ l;
+            ++ same;
         }
-        while (r >= l && a[r] == target) {
-            --r;
-            ++same;
+        
+        while (l <= r && a[r] == needed){
+            -- r;
+            ++ same;
         }
     }
 
