@@ -5,16 +5,13 @@ public:
 
     while (l < r && a[l] == a[r]) {
         
-        int needed = a[l];
-        
-        while (l <= r && a[l] == needed){
-            ++ l;
-            ++ same;
+        while (l <= r && a[l] == a[r]) {
+            ++l;
+            ++same;
         }
-        
-        while (l <= r && a[r] == needed){
-            -- r;
-            ++ same;
+        while (r >= l && a[r] == a[l - 1]) {
+            --r;
+            ++same;
         }
     }
 
