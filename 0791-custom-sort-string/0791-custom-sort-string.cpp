@@ -4,8 +4,8 @@ public:
         
         
         vector <int> freq(26);
-        unordered_map <char,int> mpS;
-        unordered_map <char,int> mp;
+        vector <int> mpS(26);
+        vector <int> mp(26);
         string ans = "";
         
         for (int i = 0;i < order.size(); i++){
@@ -13,25 +13,24 @@ public:
         }
         
         for (auto &i : s)
-            mpS[i] ++;
+            mpS[i - 'a'] ++;
         
         
         for (auto &i : order)
-            mp[i] ++;
+            mp[i - 'a'] ++;
         
         for (int i = 0;i < order.size(); i++){
-            if (mpS.count(order[i])){
-                while(mpS[order[i]]){
-                    -- mpS[order[i]];
+            if (mpS[order[i] - 'a'] > 0){
+                while(mpS[order[i] - 'a'] > 0){
+                    -- mpS[order[i] - 'a'];
                     ans += order[i];
-                    if (!mpS[order[i]]) mpS.erase(order[i]);
                 }
             }
         }
         
         
         for (int i = 0;i < s.size(); i++){
-            if (!mp.count(s[i]))
+            if (!mp[s[i] - 'a'])
                 ans.push_back(s[i]);
         }
         
