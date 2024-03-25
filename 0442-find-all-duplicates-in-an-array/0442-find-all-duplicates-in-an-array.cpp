@@ -3,14 +3,16 @@ public:
     vector<int> findDuplicates(vector<int>& a) {
                 
         vector <int> ans;
-        unordered_map <int,int> mp;
         
         for (int i = 0;i < a.size(); i++){
-            ++ mp[a[i]];
-            if (mp[a[i]] > 1)
-                ans.emplace_back(a[i]) , mp[a[i]] = 0;
+            int index = abs (a[i]) - 1;
+            
+            if (a[index] < 0){
+                ans.emplace_back(index + 1);
+            }
+            else 
+                a[index] = -a[index];
         }
-        
        
         return ans;
     }
