@@ -2,16 +2,18 @@ class Solution {
 public:
     vector<int> findDuplicates(vector<int>& a) {
                 
-        unordered_map <int,int> mp;
-        for (auto &i : a)
-            mp[i] ++;
+         
+        vector <int> ans , freq (100005);
         
-        vector <int> ans;
+        for (auto i : a)
+            freq[i] ++;
         
-        for (auto i : mp)
-            if (i.second > 1) ans.emplace_back(i.first);
+        for (int i = 0;i < freq.size(); i++){
+            if (freq[i] > 1)
+                ans.emplace_back(i);
+        }
         
-        
+       
         return ans;
     }
 };
