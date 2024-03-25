@@ -3,7 +3,7 @@ public:
     vector<int> findDuplicates(vector<int>& a) {
                 
         vector <int> ans;
-        unordered_map <int,int> mp;
+        map <int,int> mp;
         
         for (int i = 0;i < a.size(); i++){
             ++ mp[a[i]];
