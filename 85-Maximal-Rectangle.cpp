@@ -7,7 +7,7 @@ public:
         int rows = matrix.size();
         int cols = matrix[0].size();
         vector<int> heights(cols + 1, 0); // Include an extra element for easier calculation
-        int maxArea = 0;
+        long long maxArea = 0;
         
         for (const auto& row : matrix) {
             for (int i = 0; i < cols; i++) {
@@ -20,7 +20,7 @@ public:
             for (int i = 0; i < n; i++) {
                 for (int j = i, minHeight = INT_MAX; j < n; j++) {
                     minHeight = min(minHeight, heights[j]);
-                    int area = minHeight * (j - i + 1);
+                    long long area = minHeight * (j - i + 1);
                     maxArea = max(maxArea, area);
                 }
             }
