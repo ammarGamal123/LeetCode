@@ -1,11 +1,8 @@
-# Ammar Hammad's LeetCode Profile
+# LeetCode
 
-Welcome to my LeetCode profile! 👋
+This repository contains my solutions to LeetCode problems.
 
-I enjoy solving coding problems and enhancing my problem-solving skills. Below, you can find links to some of my solved LeetCode problems and my profile statistics.
+Created with :heart: by [LeetPush](https://github.com/husamahmud/LeetPush)
 
-## Profile Overview
+Made by [Mahmoud Hamdy](https://github.com/TutTrue) - [Husam](https://github.com/husamahmud)
 
-- **LeetCode Handle:** [Ammar_Hammad](https://leetcode.com/Ammar_Hammad/)
-
-Feel free to explore the solutions and provide feedback!
