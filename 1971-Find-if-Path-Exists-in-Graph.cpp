@@ -1,30 +1,48 @@
 class Solution {
 public:
-    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
-        unordered_map<int, vector<int>> graph;
-        for (const auto& edge : edges) {
-            int u = edge[0];
-            int v = edge[1];
-            graph[u].push_back(v);
-            graph[v].push_back(u);
-        }
-        
-        unordered_set<int> visited;
-        return dfs(source, destination, graph, visited);
+vector<vector<int>> adjList; // N is the number of vertices
+
+    void buildGraph (vector<vector<int>> &edges) {
+    for (int i = 0; i < edges.size(); ++i) {
+        int u = edges[i][0];
+        int v = edges[i][1];
+        adjList[u].
+                push_back(v);
+        adjList[v].
+                push_back(u); // For undirected graphs
     }
-    
-    bool dfs(int node, int destination, unordered_map<int, vector<int>>& graph, unordered_set<int>& visited) {
-        if (node == destination) {
+}
+bool hasPathDFS(vector <vector<int>> &adjList , int start , int dest){
+    int n = adjList.size();
+    vector <bool> visited(n);
+    stack <int> st;
+
+    st.push(start);
+    visited[start] = true;
+
+    while (!st.empty()){
+        int u = st.top();
+        st.pop();
+
+        if (u == dest)
             return true;
-        }
-        visited.insert(node);
-        for (int neighbor : graph[node]) {
-            if (visited.find(neighbor) == visited.end()) {
-                if (dfs(neighbor, destination, graph, visited)) {
-                    return true;
-                }
+
+        for (int v : adjList[u]){
+            if (!visited[v]){
+                st.push(v);
+                visited[v] = true;
             }
         }
-        return false;
     }
+
+    return false;
+}
+bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+    adjList.resize(n);
+    buildGraph(edges);
+
+
+    return hasPathDFS(adjList , source , destination);
+
+}
 };
