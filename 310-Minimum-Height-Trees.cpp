@@ -1,44 +1,44 @@
 class Solution {
 public:
     vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
-        if (n == 1) return {0};
-    
-        std::vector<std::list<int>> adjacency_list(n);
-        std::vector<int> degree(n, 0);
-        for (auto& edge : edges) {
-            int u = edge[0], v = edge[1];
-            adjacency_list[u].push_back(v);
-            adjacency_list[v].push_back(u);
-            degree[u]++;
-            degree[v]++;
+        if (edges.size() == 0){
+            vector <int> tmp;
+            tmp.emplace_back(0);
+            return tmp;
         }
-        
-        std::queue<int> leaves;
-        for (int i = 0; i < n; ++i) {
-            if (degree[i] == 1) leaves.push(i);
+
+        unordered_map <int,list<int>> adj;
+
+        for (int i = 0; i < edges.size(); i++){
+            int u = edges[i][0];
+            int v = edges[i][1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
         }
-        
-        int remainingNodes = n;
-        while (remainingNodes > 2) {
-            int leavesCount = leaves.size();
-            remainingNodes -= leavesCount;
-            for (int i = 0; i < leavesCount; ++i) {
-                int leaf = leaves.front();
-                leaves.pop();
-                for (int neighbor : adjacency_list[leaf]) {
-                    if (--degree[neighbor] == 1) {
-                        leaves.push(neighbor);
-                    }
-                }
+
+        vector <int> leaves;
+
+        for (auto& d : adj){
+            if (d.second.size() == 1)
+                leaves.push_back(d.first);
+        }
+
+        while (n > 2){
+            vector <int> newLeaves;
+
+            n -= leaves.size();
+
+            for (int leaf : leaves){
+                int neighbor = adj[leaf].front();
+                adj[neighbor].remove(leaf);
+
+                if (adj[neighbor].size() == 1)
+                    newLeaves.push_back(neighbor);
             }
+            leaves = newLeaves;
         }
-        
-        std::vector<int> result;
-        while (!leaves.empty()) {
-            result.push_back(leaves.front());
-            leaves.pop();
-        }
-        
-        return result;
+
+
+        return leaves;
     }
 };
