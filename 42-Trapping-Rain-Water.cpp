@@ -7,11 +7,11 @@ public:
             if (left_max <= right_max) {
                 sum += (left_max - height[i]);
                 i++;
-                left_max = std::max(left_max, height[i]);
+                left_max = max(left_max, height[i]);
             } else {
                 sum += (right_max - height[j]);
                 j--;
-                right_max = std::max(right_max, height[j]);
+                right_max = max(right_max, height[j]);
             }
         }
         return sum;
