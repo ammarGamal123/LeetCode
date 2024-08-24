@@ -1,13 +1,6 @@
 class Solution {
 public:
     int longestSubarray(vector<int>& a) {
-    if (!count(a.begin() , a.end() , 1) || (count(a.begin() , a.end() , 1) == 1 && a.size() == 1)){
-        return 0;
-    }
-    if (!count(a.begin() , a.end() , 0)){
-        return a.size() - 1;
-    }
-
     int n = a.size();
     int zeroCount {};
     int ans {};
