@@ -1,33 +1,38 @@
 class Solution {
 public:
     vector<int> smallestRange(vector<vector<int>>& a) {
-    long long k = a.size();
-    long long m = a[0].size();
-    vector <long> idx(k);
-    vector <int> ans{-1 , INT_MAX};
+    int k = a.size();
+    //              first                     second
+    priority_queue <pair<int,pair<int,int>> , vector <pair<int,pair<int,int>> >, greater<pair<int,pair<int,int>>> > pq;
+    // val , i(row) , idx(column)
 
+    int maxVal = -1e9;
+
+    for (int i = 0;i < k; i++) {
+        // val , i , 0-->col
+        pq.push({a[i][0],{i , 0}});
+        maxVal = max(maxVal, a[i][0]);
+    }
+
+    vector <int> ans{-100000000,maxVal};
     while (true) {
-        // minIdx | minVal | maxVal
+        int minVal = pq.top().first;
+        int i = pq.top().second.first;
+        int idx = pq.top().second.second;
+        pq.pop();
 
-        long long minIdx = k , minVal = INT_MAX , maxVal = INT_MIN;
-
-        for (int i = 0; i < k; i++) {
-            // get the current value a[i][currentIndex] , currentIndex = a[i][idx[i]]
-            maxVal = max(maxVal, (long long) (a[i][idx[i]]));
-            
-
-            if (a[i][idx[i]] < minVal) {
-                minVal = a[i][idx[i]];
-                minIdx = i;
-            }
+        if (maxVal - minVal < ans[1] - ans[0]) {
+            ans = {minVal, maxVal};
         }
-        if ((long long) (maxVal - minVal) < (long long)ans[1] - ans[0]) {
-            ans[0] = minVal , ans[1] = maxVal;
-        }
-        idx[minIdx] ++;
-        if (idx[minIdx] >=  a[minIdx].size()) {
+
+        idx ++;
+
+        if (idx == a[i].size())
             break;
-        }
+
+        pq.push({a[i][idx],{i , idx}});
+
+        maxVal = max(maxVal, a[i][idx]);
     }
 
     return ans;
