@@ -1,0 +1,8 @@
+1SELECT TOP 1 customer_number 
+2FROM (
+3    SELECT customer_number, COUNT(customer_number) as 'freq'
+4    FROM Orders
+5    GROUP BY customer_number
+6) AS ResultTable
+7order by freq desc
+8
