@@ -1,0 +1,9 @@
+1select customer_number 
+2from Orders
+3group by customer_number 
+4having COUNT(customer_number) = (
+5    select MAX(freq)
+6    from (select COUNT(customer_number) as 'freq'
+7          from Orders 
+8          group by customer_number) AS T
+9)
